@@ -7,6 +7,7 @@ import { ExperienciaService } from 'src/app/ruta-experiencia/services/experienci
 import { ToastrService } from 'ngx-toastr';
 import { ModalService } from '../../../services/modal.service';
 import { RegistroService } from 'src/app/ruta-experiencia/services/registro.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-experiencia-form-paso2',
@@ -126,3 +127,34 @@ export class ExperienciaFormPaso2Component {
   }
 
 }
+
+
+//para insertar imagen
+export interface ImagenUploadComponent {
+
+}
+export class ImagenUploadComponent {
+  imagenSeleccionada: File;
+
+  constructor(private http: HttpClient) { }
+
+  seleccionarImagen(event: any) {
+    this.imagenSeleccionada = event.target.files[0];
+  }
+
+  cargarImagen() {
+    const formData = new FormData();
+    formData.append('imagen', this.imagenSeleccionada);
+
+    this.http.post('/api/upload', formData).subscribe(
+      () => {
+        console.log('Imagen cargada correctamente');
+      },
+      (error) => {
+        console.log('Error al cargar la imagen:', error);
+      }
+    );
+  }
+}
+
+
