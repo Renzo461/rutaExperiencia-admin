@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   Contenido,
   NuevoContenido,
+  Contenidos,
 } from '../Interfaces/ruta-experiencia.interface';
 import { HttpClient } from '@angular/common/http';
 import { catchError, of, tap } from 'rxjs';
@@ -12,17 +13,28 @@ import { API_URL } from 'src/app/api.constants';
 })
 export class ContenidoService {
   private _contenido: Contenido[] = [];
+  private _contenidos: Contenidos[] = [];
   private _idExperiencia = 0;
 
   get contenido() {
     return this._contenido;
   }
-
+  get contenidos() {
+    return [...this._contenidos];
+  }
   get idExperiencia() {
     return this._idExperiencia;
   }
 
   constructor(private http: HttpClient) {}
+  getContenido(id: number) {
+    const url = `${URL}/contenido/experiencia/${id}`;
+    return this.http.get<Contenidos[]>(url).pipe(
+      tap(result => {
+        this._contenidos = result;
+      })
+    );
+  }
 
   buscarContenido(idExperiencia: number) {
     const URL = `${API_URL}/contenido/experiencia/${idExperiencia}`;

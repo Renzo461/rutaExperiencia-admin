@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div class="add-edit">
     <div class="barraTitulo">
       <div class="cerrar" (click)="cerrarContenido()">
@@ -19,10 +19,10 @@
         </iframe>
       </div>
       <div class="multimedia" *ngIf="contenido.IdTipoMedia === 3">
-        <!-- <a-scene>
+        <a-scene>
                     <a-sky [src]=contenido.CoUrlMedia alt="">
                     </a-sky>
-                </a-scene> -->
+                </a-scene>
       </div>
       <div class="texto">
         <h1>{{ contenido.CoTitulo }}</h1>
@@ -31,5 +31,82 @@
         </p>
       </div>
     </div>
+  </div>
+</div> -->
+<div
+  class="contenedor w-100 h-100 position-absolute d-flex justify-content-center align-items-center">
+  <div
+    id="carouselExample"
+    class="carousel slide contenido position-relative rounded overflow-hidden d-flex justify-content-between align-items-center">
+    <div (click)="cerrarContenido()" class="position-absolute cerrar">
+      <img src="/assets/cerrar.png" alt="" height="20px" />
+    </div>
+    <div class="carousel-inner h-100">
+      <div
+        class="carousel-item h-100"
+        *ngFor="let contenido of contenidos; let i = index"
+        [ngClass]="{ active: i === 0 }">
+        <div class="row h-100 flex-column-reverse flex-md-row">
+          <div class="col-md-6 flex-fill">
+            <ng-container *ngIf="contenido.IdTipoMedia === 1">
+              <img class="media" [src]="contenido.CoUrlMedia" alt="..." />
+            </ng-container>
+            <ng-container *ngIf="contenido.IdTipoMedia === 2">
+              <iframe
+                class="media"
+                [src]="URL"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+              </iframe>
+              <!-- <app-youtube-player [id]="obtenerIdVideo(contenido.CoUrlMedia)">
+              </app-youtube-player> -->
+              <!-- <youtube-player
+                [videoId]="obtenerIdVideo(contenido.CoUrlMedia)"
+                suggestedQuality="highres">
+              </youtube-player> -->
+              <!-- <iframe
+                [src]="convertirALinkSeguro(contenido.CoUrlMedia)"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                class="w-100 h-100">
+              </iframe> -->
+            </ng-container>
+            <ng-container *ngIf="contenido.IdTipoMedia === 3">
+              <img [src]="contenido.CoUrlMedia" alt="..." />
+            </ng-container>
+          </div>
+          <div class="col-md-6 flex-fill p-5">
+            <h2 style="color: #a304a3" class="text-center mb-3">
+              {{ contenido.CoTitulo }}
+            </h2>
+            <p>
+              {{ contenido.CoDescripcion }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button
+      class="carousel-control-prev control"
+      type="button"
+      data-bs-target="#carouselExample"
+      data-bs-slide="prev"
+      *ngIf="contenidos.length > 1">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next control"
+      type="button"
+      data-bs-target="#carouselExample"
+      data-bs-slide="next"
+      *ngIf="contenidos.length > 1">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
 </div>

@@ -13,7 +13,9 @@ export class ExperienciaCardComponent {
   get contenido() {
     return this.contenidoService.contenido[0];
   }
-
+  get contenidos() {
+    return this.contenidoService.contenido;
+  }
   get URL() {
     const URL = this.contenido.CoUrlMedia; //https://www.youtube.com/watch?v=s9XvSeRsdzg
     const videoId = URL.split('=')[1]; //
@@ -28,5 +30,22 @@ export class ExperienciaCardComponent {
   ) {}
   cerrarContenido() {
     this.modalService.cerrarTarjetaExperiencia();
+  }
+
+  obtenerIdVideo(url: string) {
+    if (!url) {
+      return 'undefined';
+    }
+
+    const queryLink = url.split('?')[1];
+    if (!queryLink) {
+      return 'undefined';
+    }
+    const params = new URLSearchParams(queryLink);
+    const videoId = params.get('v');
+    if (!videoId) {
+      return 'undefined';
+    }
+    return videoId;
   }
 }

@@ -39,3 +39,19 @@ export interface NuevoContenido {
   IdTipoMedia: number;
   IdExperiencia: number;
 }
+export interface Contenidos {
+  IdContenido: number;
+  CoTitulo: string;
+  CoDescripcion: string;
+  CoUrlMedia: string;
+  IdTipoMedia: number;
+  IdExperiencia: number;
+  CoEstado: number;
+  ExNombre: string;
+  ExCicloInicio: number;
+  ExCicloFin: number;
+  ExFila: number;
+  ExIconoUrl: string;
+  IdCarrera: number;
+  ExEstado: number;
+}
