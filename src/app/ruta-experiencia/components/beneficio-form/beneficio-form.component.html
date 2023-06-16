@@ -1,45 +1,44 @@
 <div class="container">
-    <div class="add-edit">
-        <div class="barraTitulo">
-            <div class="h2 bold">
-                {{funcion | titlecase}} Beneficio
-            </div>
-            <div class="cerrar" (click)="cerrarFormulario()">
-                <img src="assets/cerrar.png" alt="">
-            </div>
-        </div>
-
-        <div class="cuerpo espacio" [formGroup]="beneficioForm">
-            
-            <div class="entrada">
-                <div>
-                    Descripcion:
-                </div>
-                <input type="text" formControlName="descripcion">
-                <div class="mensaje-error"
-                    *ngIf="beneficioForm.get('descripcion')?.hasError('required') && beneficioForm.get('descripcion')?.touched">
-                <div class="mensaje-error-icon">
-                    <img src="assets/advertencia.png" alt="advertencia">
-                </div>
-                <div>
-                    El nombre es requerido.
-                </div>
-        </div>
-            </div>
-        </div>
-        <div class="footer espacio" *ngIf="funcion ==='agregar'">
-            <div class="button-1 bold" (click)="agregarBeneficio()" [class.disabled]="beneficioForm.invalid">
-                Agregar
-            </div>
-        </div>
-        <div class="footer espacio" *ngIf="funcion ==='editar'">
-            <div class="button-1 bold" (click)="editarBeneficio()" [class.disabled]="beneficioForm.invalid">
-                Editar
-            </div>
-        </div>
-
-
-
+  <div class="add-edit">
+    <div class="barraTitulo">
+      <div class="h2 bold">{{ funcion | titlecase }} Beneficio</div>
+      <div class="cerrar" (click)="cerrarFormulario()">
+        <img src="assets/cerrar.png" alt="" />
+      </div>
     </div>
 
+    <div class="cuerpo espacio" [formGroup]="beneficioForm">
+      <div class="entrada">
+        <div>Descripcion:</div>
+        <input type="text" formControlName="descripcion" />
+        <div
+          class="mensaje-error"
+          *ngIf="
+            beneficioForm.get('descripcion')?.hasError('required') &&
+            beneficioForm.get('descripcion')?.touched
+          ">
+          <div class="mensaje-error-icon">
+            <img src="assets/advertencia.png" alt="advertencia" />
+          </div>
+          <div>El nombre es requerido.</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer espacio" *ngIf="funcion === 'agregar'">
+      <div
+        class="button-1 bold"
+        (click)="agregarBeneficio()"
+        [class.disabled]="beneficioForm.invalid">
+        Agregar
+      </div>
+    </div>
+    <div class="footer espacio" *ngIf="funcion === 'editar'">
+      <div
+        class="button-1 bold"
+        (click)="editarBeneficio()"
+        [class.disabled]="beneficioForm.invalid">
+        Editar
+      </div>
+    </div>
+  </div>
 </div>

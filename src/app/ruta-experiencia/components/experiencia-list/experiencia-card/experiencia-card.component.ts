@@ -28,6 +28,7 @@ export class ExperienciaCardComponent {
     private sanitizer: DomSanitizer,
     private modalService: ModalService
   ) {}
+
   cerrarContenido() {
     this.modalService.cerrarTarjetaExperiencia();
   }
