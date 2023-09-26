@@ -47,7 +47,10 @@ export class ExperienciaFormPaso1Component {
     this.experienciaForm = this.formBuilder.group({
       cicloInicio: [this.experiencia.ExCicloInicio || '', Validators.required],
       cicloFin: [this.experiencia.ExCicloFin || '', Validators.required],
-      nombre: [this.experiencia.ExNombre || '', Validators.required],
+      nombre: [this.experiencia.ExNombre || '',  Validators.compose([
+        Validators.required,
+        Validators.maxLength(30)
+      ])],
       urlIcon: [
         this.experiencia.ExIconoUrl || this.opciones[0].url,
         Validators.required,

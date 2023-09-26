@@ -15,7 +15,7 @@
   </div>
   <div class="entrada">
     <div>Nombre Experiencia:</div>
-    <input formControlName="nombre" type="text" />
+    <input maxlength="31"  formControlName="nombre" type="text" />
     <div
       class="mensaje-error"
       *ngIf="
@@ -27,6 +27,18 @@
       </div>
       <div>El nombre es requerido.</div>
     </div>
+    <div
+    class="mensaje-error"
+    *ngIf="
+      experienciaForm.get('nombre')?.hasError('maxlength') &&
+      experienciaForm.get('nombre')?.touched
+    ">
+    <div class="mensaje-error-icon">
+      <img src="assets/advertencia.png" alt="advertencia" />
+    </div>
+    <div>El nombre debe tener maximo 30 caracteres</div>
+  </div>
+
   </div>
   <div class="entrada">
     <div>Icono:</div>

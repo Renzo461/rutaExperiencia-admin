@@ -184,9 +184,7 @@ export class ExperienciaFormPaso2Component implements OnInit, OnDestroy {
     if (this.isFormArrayValid()) {
       const contenidoObservables = this.contenidoForms.map(form => {
         const tipo = form.value.tipo;
-        const titleCasePipe = new TitleCasePipe();
-        const tituloValue = form.value.titulo;
-        const tituloTitleCase = titleCasePipe.transform(tituloValue);
+        const tituloTitleCase = form.value.titulo;
         let urlMedia = '';
         switch (tipo) {
           case 1: // Tipo imagen
